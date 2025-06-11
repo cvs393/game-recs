@@ -40,6 +40,7 @@ function App() {
     }
   }
 
+  // test comment
   const handleFavorite = (game: Game) => {
     // Use _id if present, otherwise id
     const gameId = (game as any)._id || (game as any).id;
