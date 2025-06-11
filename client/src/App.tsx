@@ -27,7 +27,8 @@ function App() {
     setLoading(true)
     setError(null)
     try {
-      const response = await axios.post('http://localhost:3001/api/games/recommend', {
+      const apiUrl = import.meta.env.VITE_API_URL || 'https://game-recs.onrender.com'
+      const response = await axios.post(`${apiUrl}/api/games/recommend`, {
         genres,
         ...(playerType ? { playerType } : {})
       })

@@ -20,7 +20,8 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": true
+    
   },
   "include": ["src"],
-  
+  "homepage": "https://cvs393.github.io/game-recs"
 }
