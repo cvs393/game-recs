@@ -5,6 +5,7 @@ import mongoose from 'mongoose'
 import helmet from 'helmet'
 import rateLimit from 'express-rate-limit'
 import { gameRoutes } from './routes/games.js'
+import { authRoutes } from './routes/auth.js'
 
 dotenv.config()
 
@@ -49,6 +50,7 @@ app.use(express.json({ limit: '10kb' })) // Limit body size to 10kb
 
 // Routes
 app.use('/api/games', gameRoutes)
+app.use('/api/auth', authRoutes)
 
 // Error handling middleware
 app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
