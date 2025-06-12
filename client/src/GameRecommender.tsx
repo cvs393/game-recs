@@ -2,16 +2,31 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { GameForm } from './components/GameForm'
 import { GameRecommendations } from './components/GameRecommendations'
-import { PasswordProtection } from './components/PasswordProtection'
 import { Game } from './types'
 
-function App() {
+interface Props {
+  authToken: string
+  expiresAt: number
+  onLogout: () => void
+}
+
+export function GameRecommender({ authToken, expiresAt, onLogout }: Props) {
   const [recommendations, setRecommendations] = useState<Game[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [favorites, setFavorites] = useState<Game[]>([])
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const [authExpiresAt, setAuthExpiresAt] = useState<number | null>(null)
+
+  // Set up axios with auth token
+  useEffect(() => {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${authToken}`
+  }, [authToken])
+
+  // Check token expiration
+  useEffect(() => {
+    if (expiresAt < Date.now()) {
+      onLogout()
+    }
+  }, [expiresAt, onLogout])
 
   // Load favorites from localStorage
   useEffect(() => {
@@ -25,13 +40,6 @@ function App() {
   useEffect(() => {
     localStorage.setItem('favorites', JSON.stringify(favorites))
   }, [favorites])
-
-  // Check authentication expiration
-  useEffect(() => {
-    if (authExpiresAt && authExpiresAt < Date.now()) {
-      handleLogout()
-    }
-  }, [authExpiresAt])
 
   const handleSubmit = async (genres: string[], playerType: string) => {
     setLoading(true)
@@ -57,32 +65,13 @@ function App() {
     }
   }
 
-  const handleAuthenticated = (token: string, expiresAt: number) => {
-    setIsAuthenticated(true)
-    setAuthExpiresAt(expiresAt)
-    // Set the token for all future requests
-    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
-  }
-
-  const handleLogout = () => {
-    setIsAuthenticated(false)
-    setAuthExpiresAt(null)
-    localStorage.removeItem('authToken')
-    localStorage.removeItem('authExpiresAt')
-    delete axios.defaults.headers.common['Authorization']
-  }
-
-  if (!isAuthenticated) {
-    return <PasswordProtection onAuthenticated={handleAuthenticated} />
-  }
-
   return (
     <div className="min-h-screen bg-gray-100">
       <header className="bg-white shadow">
         <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
           <h1 className="text-3xl font-bold text-gray-900">Game Recommender</h1>
           <button
-            onClick={handleLogout}
+            onClick={onLogout}
             className="px-4 py-2 text-sm text-gray-600 hover:text-gray-900"
           >
             Logout
@@ -129,6 +118,4 @@ function App() {
       </main>
     </div>
   )
-}
-
-export default App
+} 
