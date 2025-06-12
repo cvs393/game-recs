@@ -3,8 +3,11 @@
 @tailwind utilities;
 
 @layer base {
-  body {
-    @apply bg-gray-50 text-gray-900;
+  html, body {
+    @apply bg-primary-50 text-editorial font-sans;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif text-editorial;
   }
 }
 
@@ -14,18 +17,22 @@
   }
   
   .btn-primary {
-    @apply bg-blue-600 text-white hover:bg-blue-700;
+    @apply bg-primary-500 text-white hover:bg-primary-600;
   }
   
   .btn-secondary {
-    @apply bg-gray-200 text-gray-800 hover:bg-gray-300;
+    @apply bg-accent-100 text-editorial hover:bg-accent-200;
   }
   
   .input {
-    @apply w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
+    @apply w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent;
   }
   
   .card {
-    @apply bg-white rounded-lg shadow-md p-6;
+    @apply bg-white rounded-2xl shadow-md p-6;
+  }
+  
+  .pill {
+    @apply rounded-pill px-6 py-2 font-medium bg-primary-100 text-editorial shadow-sm;
   }
 }

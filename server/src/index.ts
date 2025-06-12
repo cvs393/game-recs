@@ -5,6 +5,7 @@ import mongoose from 'mongoose'
 import helmet from 'helmet'
 import rateLimit from 'express-rate-limit'
 import { gameRoutes } from './routes/games.js'
+import { tripRoutes } from './routes/trips.js'
 import { authRoutes } from './routes/auth.js'
 
 dotenv.config()
@@ -12,53 +13,31 @@ dotenv.config()
 const app = express()
 const port = process.env.PORT || 3001
 
-// Security middleware
-app.use(helmet()) // Adds various HTTP headers for security
+// Middleware
+app.use(cors({
+  origin: process.env.NODE_ENV === 'production' 
+    ? 'https://cvs393.github.io'
+    : 'http://localhost:5175'
+}))
+app.use(express.json())
+app.use(helmet())
 
 // Rate limiting
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // Limit each IP to 100 requests per windowMs
-  message: 'Too many requests from this IP, please try again later'
+  max: 100 // limit each IP to 100 requests per windowMs
 })
 app.use(limiter)
 
-// CORS configuration
-const allowedOrigins = [
-  'https://cvs393.github.io',
-  'http://localhost:5175' // For local development
-]
-
-app.use(cors({
-  origin: (origin, callback) => {
-    // Allow requests with no origin (like mobile apps or curl requests)
-    if (!origin) return callback(null, true)
-    
-    if (allowedOrigins.indexOf(origin) === -1) {
-      const msg = 'The CORS policy for this site does not allow access from the specified Origin.'
-      return callback(new Error(msg), false)
-    }
-    return callback(null, true)
-  },
-  methods: ['GET', 'POST'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
-}))
-
-// Body parsing middleware
-app.use(express.json({ limit: '10kb' })) // Limit body size to 10kb
-
 // Routes
 app.use('/api/games', gameRoutes)
+app.use('/api/trips', tripRoutes)
 app.use('/api/auth', authRoutes)
 
 // Error handling middleware
-app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
+app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
   console.error(err.stack)
-  res.status(500).json({ 
-    error: 'Something went wrong!',
-    message: process.env.NODE_ENV === 'development' ? err.message : undefined
-  })
+  res.status(500).json({ error: 'Something broke!' })
 })
 
 // Connect to MongoDB

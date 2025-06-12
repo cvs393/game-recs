@@ -1,7 +1,10 @@
 import express, { Request, Response } from 'express'
 import { body, validationResult } from 'express-validator'
+import jwt from 'jsonwebtoken'
 
 const router = express.Router()
+
+const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key'
 
 // Validation middleware
 const validatePasswordRequest = [
@@ -30,12 +33,13 @@ router.post('/verify', validatePasswordRequest, async (req: Request, res: Respon
     }
 
     if (password === correctPassword) {
-      // Generate a simple token that expires in 24 hours
-      const token = Buffer.from(Date.now().toString()).toString('base64')
+      // Generate a JWT token that expires in 24 hours
+      const token = jwt.sign({}, JWT_SECRET, { expiresIn: '24h' })
+      const expiresAt = Date.now() + (24 * 60 * 60 * 1000) // 24 hours from now
       res.json({ 
         success: true,
         token,
-        expiresAt: Date.now() + (24 * 60 * 60 * 1000) // 24 hours from now
+        expiresAt
       })
     } else {
       res.status(401).json({ 

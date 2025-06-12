@@ -6,19 +6,49 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        serif: ["'Playfair Display'", 'serif'],
+        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+      },
       colors: {
         primary: {
-          50: '#f0f9ff',
-          100: '#e0f2fe',
-          200: '#bae6fd',
-          300: '#7dd3fc',
-          400: '#38bdf8',
-          500: '#0ea5e9',
-          600: '#0284c7',
-          700: '#0369a1',
-          800: '#075985',
-          900: '#0c4a6e',
+          50: '#F0F9E8', // soft green background
+          100: '#E6F4D9',
+          200: '#C8E6B5',
+          300: '#A3D98A',
+          400: '#7DCB5F',
+          500: '#57BD34',
+          600: '#3E9A27',
+          700: '#2C6B1A',
+          800: '#1A3C0D',
+          900: '#0A1B04',
         },
+        bluebg: {
+          50: '#F0F6FF', // light blue background
+          100: '#D6E6FF',
+          200: '#B3D4FF',
+          300: '#7CB8FF',
+          400: '#479CFF',
+          500: '#1E7FFF',
+          600: '#1763CC',
+          700: '#104799',
+          800: '#0A2C66',
+          900: '#041133',
+        },
+        accent: {
+          50: '#FFFDEB', // soft yellow
+          100: '#FFF9C4',
+          200: '#FFF59D',
+          300: '#FFF176',
+          400: '#FFEE58',
+          500: '#FFEB3B',
+        },
+        editorial: '#234D2C', // dark green for headings
+      },
+      borderRadius: {
+        'xl': '1.25rem',
+        '2xl': '2rem',
+        'pill': '9999px',
       },
     },
   },
