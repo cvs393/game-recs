@@ -49,14 +49,14 @@ export function TripRecommender({ authToken, expiresAt, onLogout }: Props) {
             <p className="text-base text-red-600 font-serif">{error}</p>
           </div>
         )}
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-12">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 items-start">
           {/* Main Form: Largest column */}
-          <div className="card col-span-5 flex flex-col justify-between bg-white/80 shadow-lg">
-            <h2 className="text-2xl font-serif font-bold mb-6 text-editorial">Plan Your Trip</h2>
+          <div className="card col-span-5 flex flex-col items-center bg-white/80 shadow-lg p-8">
+            <h2 className="text-2xl font-serif font-bold mb-6 text-editorial text-center">Plan Your Trip</h2>
             <TripForm onSubmit={handleSubmit} loading={loading} />
           </div>
           {/* Recommendations: Middle column */}
-          <div className="card col-span-7 flex flex-col justify-between bg-white/80 shadow-lg">
+          <div className="card col-span-7 flex flex-col bg-white/80 shadow-lg p-8">
             <h2 className="text-2xl font-serif font-bold mb-6 text-editorial">Your Trip Plan</h2>
             <TripRecommendations recommendation={recommendation} loading={loading} />
           </div>

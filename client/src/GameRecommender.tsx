@@ -73,31 +73,42 @@ export function GameRecommender({ authToken, expiresAt, onLogout }: Props) {
             <p className="text-base text-red-600 font-serif">{error}</p>
           </div>
         )}
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-12">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 items-start">
           {/* Main Form: Largest column */}
-          <div className="card col-span-5 flex flex-col justify-between bg-white/80 shadow-lg">
-            <h2 className="text-2xl font-serif font-bold mb-6 text-editorial">Find Your Next Game</h2>
+          <div className="card col-span-5 flex flex-col items-center bg-white/80 shadow-lg p-8">
+            <h2 className="text-2xl font-serif font-bold mb-6 text-editorial text-center">Find Your Next Game</h2>
             <GameForm onSubmit={handleSubmit} loading={loading} />
           </div>
           {/* Recommendations: Middle column */}
-          <div className="card col-span-5 flex flex-col justify-between bg-white/80 shadow-lg">
+          <div className="card col-span-5 flex flex-col bg-white/80 shadow-lg p-8">
             <h2 className="text-2xl font-serif font-bold mb-6 text-editorial">Recommended Games</h2>
             <GameRecommendations games={recommendations} loading={loading} onFavorite={handleFavorite} />
           </div>
           {/* Favorites: Rightmost column */}
-          <div className="card col-span-2 flex flex-col min-w-0 bg-white/80 shadow-lg">
+          <div className="card col-span-2 flex flex-col min-w-0 bg-white/80 shadow-lg p-8">
             <h2 className="text-lg font-serif font-semibold mb-4 text-editorial text-center">Favorites</h2>
             {favorites.length === 0 ? (
               <p className="text-editorial text-sm text-center font-serif">No favorites yet.</p>
             ) : (
-              <ul className="space-y-3 w-full">
-                {favorites.map(game => (
-                  <li key={(game as any)._id || (game as any).id} className="flex items-center space-x-2 w-full">
-                    <img src={game.imageUrl} alt={game.title} className="w-10 h-10 rounded object-cover" />
-                    <span className="text-sm font-medium truncate font-serif" title={game.title}>{game.title}</span>
-                  </li>
-                ))}
-              </ul>
+              <>
+                <button
+                  className="mb-4 px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-md text-sm font-medium self-center"
+                  onClick={() => setFavorites([])}
+                >
+                  Clear Favorites
+                </button>
+                <ul className="flex flex-wrap gap-3 justify-center w-full">
+                  {favorites.map(game => (
+                    <li key={(game as any)._id || (game as any).id}>
+                      <img
+                        src={game.imageUrl}
+                        alt={game.title}
+                        className="w-14 h-14 rounded object-cover border border-gray-200 shadow-sm"
+                      />
+                    </li>
+                  ))}
+                </ul>
+              </>
             )}
           </div>
         </div>
