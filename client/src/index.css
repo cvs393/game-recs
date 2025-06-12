@@ -8,16 +8,18 @@
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif text-editorial;
+    font-family: 'DM Serif Display', 'Playfair Display', serif;
+    letter-spacing: -0.01em;
   }
 }
 
 @layer components {
   .btn {
-    @apply px-4 py-2 rounded-md font-medium transition-colors duration-200;
+    @apply px-6 py-2 rounded-pill font-medium transition-all duration-200 shadow-sm;
   }
   
   .btn-primary {
-    @apply bg-primary-500 text-white hover:bg-primary-600;
+    @apply bg-bluebg-500 text-white hover:bg-bluebg-600 scale-100 hover:scale-105;
   }
   
   .btn-secondary {
@@ -25,14 +27,36 @@
   }
   
   .input {
-    @apply w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent;
+    @apply w-full px-4 py-2 border border-gray-300 rounded-pill focus:outline-none focus:ring-2 focus:ring-bluebg-400 focus:border-transparent transition-all duration-200;
   }
   
   .card {
-    @apply bg-white rounded-2xl shadow-md p-6;
+    @apply bg-white rounded-[2.5rem] shadow-lg p-8 transition-all duration-300;
   }
   
   .pill {
-    @apply rounded-pill px-6 py-2 font-medium bg-primary-100 text-editorial shadow-sm;
+    @apply rounded-pill px-6 py-2 font-medium bg-bluebg-100 text-editorial shadow-sm transition-all duration-200;
   }
+  
+  .pill-yellow {
+    @apply rounded-pill px-6 py-2 font-medium bg-accent-100 text-editorial shadow-sm transition-all duration-200;
+  }
+  
+  .fade-in {
+    animation: fadeIn 0.7s cubic-bezier(0.4,0,0.2,1) both;
+  }
+  
+  .slide-up {
+    animation: slideUp 0.7s cubic-bezier(0.4,0,0.2,1) both;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
 }

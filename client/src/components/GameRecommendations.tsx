@@ -24,11 +24,11 @@ export function GameRecommendations({ games, loading, onFavorite }: Props) {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-8">
       {games.map(game => (
-        <div key={game.id} className="bg-white rounded-lg shadow p-4 hover:shadow-md transition-shadow">
-          <div className="flex items-start space-x-4">
-            <div className="flex-shrink-0 w-24 h-24 bg-gray-200 rounded-md overflow-hidden">
+        <div key={game.id} className="bg-bluebg-50 rounded-[2rem] shadow-xl p-10 hover:shadow-2xl transition-shadow fade-in slide-up">
+          <div className="flex items-start gap-6">
+            <div className="flex-shrink-0 w-24 h-24 bg-bluebg-200 rounded-2xl overflow-hidden">
               <img
                 src={game.imageUrl || DEFAULT_IMAGE}
                 alt={game.title}
@@ -37,30 +37,30 @@ export function GameRecommendations({ games, loading, onFavorite }: Props) {
               />
             </div>
             <div className="flex-1 min-w-0">
-              <h3 className="text-lg font-semibold text-gray-900">{game.title}</h3>
-              <div className="mt-1 flex flex-wrap gap-1">
+              <div className="flex flex-wrap items-center gap-2 mb-1">
+                <h3 className="text-2xl font-serif font-bold text-bluebg-800 mr-2 break-words max-w-full">
+                  {game.title}
+                </h3>
                 {game.genres.map(genre => (
                   <span
                     key={genre}
-                    className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800"
+                    className="inline-flex items-center px-3 py-0.5 rounded-pill text-sm font-semibold bg-bluebg-400 text-white shadow-sm max-w-[10rem] truncate"
                   >
                     {genre}
                   </span>
                 ))}
               </div>
-              <p className="mt-2 text-sm text-gray-600">{game.description}</p>
-              <div className="mt-2 flex items-center space-x-2">
-                <span className="text-sm font-medium text-gray-900">
-                  Rating: {game.rating.toFixed(1)}/10
-                </span>
-                <span className="mx-2 text-gray-300">•</span>
-                <span className="text-sm text-gray-500">
-                  Player Type: {game.playerTypes}
-                </span>
+              <p className="mt-2 text-lg text-bluebg-700 font-sans leading-relaxed break-words whitespace-normal max-w-full">
+                {game.description}
+              </p>
+              <div className="mt-4 flex flex-wrap items-center gap-6 text-base text-bluebg-900 font-medium">
+                <span>Rating: <span className="font-bold">{game.rating.toFixed(1)}/10</span></span>
+                <span className="text-bluebg-300">•</span>
+                <span className="truncate max-w-[16rem]">Player Type: {game.playerTypes}</span>
                 {onFavorite && (
                   <button
                     type="button"
-                    className="ml-4 px-2 py-1 bg-yellow-400 hover:bg-yellow-500 text-xs rounded font-semibold text-white"
+                    className="ml-auto px-4 py-2 bg-yellow-400 hover:bg-yellow-500 text-sm rounded-pill font-bold text-white btn transition-all duration-200 scale-100 hover:scale-105 shadow whitespace-nowrap"
                     onClick={() => onFavorite(game)}
                   >
                     ★ Favorite

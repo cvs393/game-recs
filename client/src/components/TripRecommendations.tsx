@@ -23,14 +23,14 @@ export function TripRecommendations({ recommendation, loading }: Props) {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       {/* Packing List */}
-      <section>
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Packing List</h3>
-        <ul className="grid grid-cols-2 gap-2">
+      <section className="bg-accent-50 rounded-[2rem] shadow-lg p-8 fade-in slide-up">
+        <h3 className="text-3xl font-serif font-bold text-editorial mb-6">Packing List</h3>
+        <ul className="grid grid-cols-2 gap-4">
           {recommendation.packingList.map((item, index) => (
-            <li key={index} className="flex items-center space-x-2 text-sm text-gray-600">
-              <svg className="h-4 w-4 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <li key={index} className="flex items-center space-x-3 text-lg text-editorial">
+              <svg className="h-6 w-6 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
               <span>{item}</span>
@@ -40,48 +40,48 @@ export function TripRecommendations({ recommendation, loading }: Props) {
       </section>
 
       {/* Transportation */}
-      <section>
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Transportation Options</h3>
-        <div className="space-y-4">
+      <section className="bg-primary-50 rounded-[2rem] shadow-lg p-8 fade-in slide-up">
+        <h3 className="text-3xl font-serif font-bold text-editorial mb-6">Transportation Options</h3>
+        <div className="space-y-6">
           {recommendation.transportation.map((transport, index) => (
-            <div key={index} className="bg-gray-50 p-4 rounded-lg">
-              <h4 className="font-medium text-gray-900">{transport.type}</h4>
-              <p className="text-sm text-gray-600 mt-1">{transport.details}</p>
+            <div key={index} className="bg-white p-6 rounded-2xl shadow border border-primary-100">
+              <h4 className="font-serif font-bold text-xl text-editorial">{transport.type}</h4>
+              <p className="text-lg text-primary-700 mt-2">{transport.details}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Tourist Spots */}
-      <section>
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Top Tourist Spots</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <section className="bg-accent-50 rounded-[2rem] shadow-lg p-8 fade-in slide-up">
+        <h3 className="text-3xl font-serif font-bold text-editorial mb-6">Top Tourist Spots</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {recommendation.touristSpots.map((spot, index) => (
-            <div key={index} className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+            <div key={index} className="bg-white p-6 rounded-2xl shadow border border-primary-100">
               <div className="flex justify-between items-start">
-                <h4 className="font-medium text-gray-900">{spot.name}</h4>
-                <span className="text-sm text-yellow-600">★ {spot.rating.toFixed(1)}</span>
+                <h4 className="font-serif font-bold text-xl text-editorial">{spot.name}</h4>
+                <span className="text-lg text-yellow-600 font-bold">★ {spot.rating.toFixed(1)}</span>
               </div>
-              <p className="text-sm text-gray-600 mt-1">{spot.description}</p>
+              <p className="text-lg text-primary-700 mt-2">{spot.description}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Restaurants */}
-      <section>
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Recommended Restaurants</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <section className="bg-primary-50 rounded-[2rem] shadow-lg p-8 fade-in slide-up">
+        <h3 className="text-3xl font-serif font-bold text-editorial mb-6">Recommended Restaurants</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {recommendation.restaurants.map((restaurant, index) => (
-            <div key={index} className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+            <div key={index} className="bg-white p-6 rounded-2xl shadow border border-primary-100">
               <div className="flex justify-between items-start">
                 <div>
-                  <h4 className="font-medium text-gray-900">{restaurant.name}</h4>
-                  <p className="text-sm text-gray-500">{restaurant.cuisine}</p>
+                  <h4 className="font-serif font-bold text-xl text-editorial">{restaurant.name}</h4>
+                  <p className="text-lg text-primary-700">{restaurant.cuisine}</p>
                 </div>
                 <div className="text-right">
-                  <span className="text-sm text-yellow-600">★ {restaurant.rating.toFixed(1)}</span>
-                  <p className="text-sm text-gray-500">{restaurant.priceRange}</p>
+                  <span className="text-lg text-yellow-600 font-bold">★ {restaurant.rating.toFixed(1)}</span>
+                  <p className="text-lg text-primary-700">{restaurant.priceRange}</p>
                 </div>
               </div>
             </div>
@@ -90,22 +90,22 @@ export function TripRecommendations({ recommendation, loading }: Props) {
       </section>
 
       {/* Hotels */}
-      <section>
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Accommodation Options</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <section className="bg-accent-50 rounded-[2rem] shadow-lg p-8 fade-in slide-up">
+        <h3 className="text-3xl font-serif font-bold text-editorial mb-6">Accommodation Options</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {recommendation.hotels.map((hotel, index) => (
-            <div key={index} className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+            <div key={index} className="bg-white p-6 rounded-2xl shadow border border-primary-100">
               <div className="flex justify-between items-start">
                 <div>
-                  <h4 className="font-medium text-gray-900">{hotel.name}</h4>
-                  <p className="text-sm text-gray-500">{hotel.priceRange}</p>
+                  <h4 className="font-serif font-bold text-xl text-editorial">{hotel.name}</h4>
+                  <p className="text-lg text-primary-700">{hotel.priceRange}</p>
                 </div>
-                <span className="text-sm text-yellow-600">★ {hotel.rating.toFixed(1)}</span>
+                <span className="text-lg text-yellow-600 font-bold">★ {hotel.rating.toFixed(1)}</span>
               </div>
-              <div className="mt-2">
+              <div className="mt-4">
                 <div className="flex flex-wrap gap-2">
                   {hotel.amenities.map((amenity, i) => (
-                    <span key={i} className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                    <span key={i} className="inline-flex items-center px-3 py-1 rounded-pill text-sm font-semibold bg-primary-100 text-editorial">
                       {amenity}
                     </span>
                   ))}
@@ -117,30 +117,30 @@ export function TripRecommendations({ recommendation, loading }: Props) {
       </section>
 
       {/* Events */}
-      <section>
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Upcoming Events</h3>
-        <div className="space-y-4">
+      <section className="bg-primary-50 rounded-[2rem] shadow-lg p-8 fade-in slide-up">
+        <h3 className="text-3xl font-serif font-bold text-editorial mb-6">Upcoming Events</h3>
+        <div className="space-y-6">
           {recommendation.events.map((event, index) => (
-            <div key={index} className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+            <div key={index} className="bg-white p-6 rounded-2xl shadow border border-primary-100">
               <div className="flex justify-between items-start">
                 <div>
-                  <h4 className="font-medium text-gray-900">{event.name}</h4>
-                  <p className="text-sm text-gray-500">{event.date}</p>
+                  <h4 className="font-serif font-bold text-xl text-editorial">{event.name}</h4>
+                  <p className="text-lg text-primary-700">{event.date}</p>
                 </div>
               </div>
-              <p className="text-sm text-gray-600 mt-1">{event.description}</p>
+              <p className="text-lg text-primary-700 mt-2">{event.description}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Fun Facts */}
-      <section>
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Fun Facts</h3>
-        <ul className="space-y-2">
+      <section className="bg-accent-50 rounded-[2rem] shadow-lg p-8 fade-in slide-up">
+        <h3 className="text-3xl font-serif font-bold text-editorial mb-6">Fun Facts</h3>
+        <ul className="space-y-4">
           {recommendation.funFacts.map((fact, index) => (
-            <li key={index} className="flex items-start space-x-2 text-sm text-gray-600">
-              <svg className="h-5 w-5 text-blue-500 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <li key={index} className="flex items-start space-x-3 text-lg text-editorial">
+              <svg className="h-6 w-6 text-primary-500 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               <span>{fact}</span>
@@ -150,20 +150,20 @@ export function TripRecommendations({ recommendation, loading }: Props) {
       </section>
 
       {/* Cost Breakdown */}
-      <section>
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Cost Breakdown</h3>
-        <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
-          <div className="flex justify-between items-center mb-4">
-            <h4 className="font-medium text-gray-900">Total Estimated Cost</h4>
-            <span className="text-lg font-semibold text-gray-900">
+      <section className="bg-primary-50 rounded-[2rem] shadow-lg p-8 fade-in slide-up">
+        <h3 className="text-3xl font-serif font-bold text-editorial mb-6">Cost Breakdown</h3>
+        <div className="bg-white p-6 rounded-2xl shadow border border-primary-100">
+          <div className="flex justify-between items-center mb-6">
+            <h4 className="font-serif font-bold text-xl text-editorial">Total Estimated Cost</h4>
+            <span className="text-2xl font-bold text-editorial">
               {recommendation.totalCost.currency} {recommendation.totalCost.estimated.toLocaleString()}
             </span>
           </div>
-          <div className="space-y-2">
+          <div className="space-y-3">
             {recommendation.totalCost.breakdown.map((item, index) => (
-              <div key={index} className="flex justify-between text-sm">
-                <span className="text-gray-600">{item.category}</span>
-                <span className="text-gray-900">{recommendation.totalCost.currency} {item.amount.toLocaleString()}</span>
+              <div key={index} className="flex justify-between text-lg">
+                <span className="text-primary-700">{item.category}</span>
+                <span className="text-editorial">{recommendation.totalCost.currency} {item.amount.toLocaleString()}</span>
               </div>
             ))}
           </div>
